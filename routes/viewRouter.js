@@ -47,7 +47,6 @@ router.get(
 router.get(
   '/admin/statis',
   authController.protect,
-  authController.restrictTo('admin'),
   viewController.getStatistics,
 );
 

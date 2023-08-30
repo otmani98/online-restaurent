@@ -11,13 +11,12 @@ export const login = async (userName, password) => {
       },
     });
 
-
     if (res.data.status === 'success') {
       showAlert('success', 'You are logged in successfully');
 
       window.setTimeout(() => {
         location.assign('/admin');
-      }, 2000);
+      }, 300);
     }
   } catch (err) {
     // console.log(err);
