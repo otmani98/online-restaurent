@@ -16,7 +16,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
       name: `${meal.name}`,
       description: meal.description,
       images: [
-        `https://www.wallpaperflare.com/static/999/929/140/pizza-baked-wooden-tray-wallpaper.jpg`,
+        `https://online-restaurant.onrender.com/img/meals/${meal.photos[0]}`,
       ],
     });
 
