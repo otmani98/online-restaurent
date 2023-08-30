@@ -1,0 +1,36 @@
+extends base
+
+block content 
+  
+  .menu
+    .container
+      ul.menu-list
+        each category in mealsCategory
+          li
+            a(href=`#${category._id}`) #{category._id}
+
+      each category in mealsCategory
+        .category
+          h2(id=`${category._id}`)= category._id
+          .meals
+            each meal in category.meals
+              .meal(id=`meal${meal._id}`)
+                .img
+                  img(src=`img/meals/${meal.photos[0]}` alt='')
+                .text
+                  h4= meal.name
+                  p= meal.description
+                  button.btnPopA(data-id=`meal${meal._id}` data-price=`${meal.price}` ) 
+                    |Add to cart ($ 
+                    span.price= meal.price
+                    |)
+  .filter
+  //popupAdd
+  include _popupAdd
+  //ckeckout
+  include _checkout
+
+
+
+
+

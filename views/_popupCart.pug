@@ -1,0 +1,16 @@
+.popupCart
+    .items
+    if cartElements
+      each item in cartElements
+        .item
+          .img
+            img(src=`${item.img}` alt='')
+          .text
+            h4= item.title
+            span= `$${item.price} &times; ${item.quantity}`
+          - console.log(item.id)
+          span.close.delete__item(data-id=`${item.id}`) &times;
+      
+    button.checkout
+      span.total Total $ 180
+      |  Checkout Now

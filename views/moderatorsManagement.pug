@@ -1,0 +1,53 @@
+extends baseAdmin
+
+block details 
+  table.styled-table
+    thead
+      tr
+        th username
+        th email
+        th role
+        th Date &amp; Time
+        th Update Action
+        th Delete Action
+    tbody
+      each user in users
+        tr(id=`user${user._id}`)
+          td= user.userName
+          td= user.email
+          td= user.role
+          - let dateOf = new Date(user.createdAt.getTime()).toISOString().replace(/T|Z/g, ' ').slice(0, -5);
+          td= dateOf
+          td
+            button#updatePopupBtn(data-userid=`${user._id}` data-username=`${user.userName}` data-email=`${user.email}`) Update
+          td
+            button#deletePopupBtn(data-userid=`${user._id}` data-username=`${user.userName}`) Delete
+
+  if length < 5
+    button#addPopupBtn Add Moderators
+
+  form#addUserForm.popupModerators.form-a-u.pop
+    a.close() &times;
+    h4 Add Moderator
+    input#usernameAdd(type='text' name='username' placeholder='username')
+    input#passwordAdd(type='password' placeholder='password' name='password')
+    input#passwordConfirmAdd(type='password' placeholder='confirm password' name='password')
+    button#addUserBtn Add
+
+  form#updateUserForm.popupModerators.form-a-u.pop
+    a.close() &times;
+    h4 Update Moderator
+    input#usernameUpdate(type='text' name='username' placeholder='username')
+    input#emailUpdate(type='email' name='username' placeholder='email')
+    button#updateUserBtn Update
+
+  form#deleteUserForm.popupModerators.form-a-u.pop
+    a.close() &times;
+    h4 Delete Moderator
+    p Are you sure you want 
+    |to delete this user
+    span#usernameToDelete medo
+    button#yesDeleteBtn Yes
+    button#noDeleteBtn No
+
+

@@ -1,0 +1,15 @@
+extends baseAdmin
+
+block details 
+  .profile
+    form.updateInfoForm.form-a-u
+      h4 Your Information
+      input#email(type='email' name='email' placeholder='your email' value=`${email}`)
+      input#username(type='text' name='username' placeholder='your username' value=`${username}`)
+      button Save the change
+    form.updatepasswordForm.form-a-u
+      h4 Your Password
+      input#currentPassword(type='password' name='currentPassword' placeholder='your current password')
+      input#newPassword(type='password' name='newPassword' placeholder='new password')
+      input#confirmPassword(type='password' name='confirmPassword' placeholder='confirm password')
+      button Update my password

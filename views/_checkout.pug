@@ -1,0 +1,12 @@
+#checkout.checkout
+  a.close &times;
+  h3 Checkout your Submit
+  p
+    | Total price $
+    span.total_in_check 25
+  form.checkout_form(action='')
+    input(id='email_checkout' type='email' name='email' placeholder='Your E-mail' required='')
+    input(id='phone_checkout' type='tel' name='phone' placeholder='Your phone number' required='')
+    input(id='address_checkout' type='text' name='address' placeholder='Your address' required='')
+    textarea(id='suggestions_checkout' name='' cols='3' rows='2' placeholder='Any suggestions')
+    button.run_checkout_session Ckeck out

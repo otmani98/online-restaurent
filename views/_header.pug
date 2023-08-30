@@ -1,0 +1,29 @@
+header
+  .container
+    a(href='/')
+      img(src='/img/logo.png' alt='')
+    nav
+      ul
+        li
+          a(href='/menu') Menu
+        li
+          a(href='/#popular') Popular
+        li
+          a(href='/#about') About Us
+        li
+          a(href='/#contact') Contact Us
+        if user
+          li
+            a(href='/admin') Admin
+          li
+            a.logout Logout
+        else
+          li
+            a(href='/login') Admin area
+        li
+          a.cart
+            i.fas.fa-shopping-cart.shopping
+            span.counter 3
+  //- if !user
+  //.popupCart
+  include _popupCart.pug

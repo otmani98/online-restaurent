@@ -1,0 +1,77 @@
+extends baseAdmin
+
+block details 
+  table.styled-table.meals-table
+    thead
+      tr
+        th Image
+        th Name
+        th Price
+        th Category
+        th.desc Description 
+        th Date &amp; Time
+        th Update Action
+        th Delete Action
+    tbody
+      each meal in meals
+        tr(id=`meal${meal._id}`)
+          td
+            img.mealPhoto(src=`/img/meals/${meal.photos[0]}`)
+          td= meal.name
+          td= meal.price
+          td= meal.category
+          td.desc= meal.description
+          - let dateOf = new Date(meal.createdAt.getTime()).toISOString().replace(/T|Z/g, ' ').slice(0, -5);
+          td= dateOf
+          td
+            button#updateMealPopupBtn(data-mealid=`${meal._id}` data-name=`${meal.name}` data-price=`${meal.price}` data-category=`${meal.category}` data-description = `${meal.description}` data-photo = `${meal.photos[0]}`) Update
+          td
+            button#deleteMealPopupBtn(data-mealid=`${meal._id}` data-name=`${meal.name}`) Delete
+
+  button#addMealPopupBtn Add Meals
+
+
+  if length > 10
+    .pagination
+      a(href=`?page=1&limit=10`) &laquo;
+      - for (let i = 1; i <= range; i++) {
+          a.pageNumber(href=`?page=${i}&limit=10`) #{i}
+      - }
+      a(href=`?page=${range}&limit=10`) &raquo;
+
+
+  form#addNewMealForm.popupModerators.form-a-u.pop
+    a.close() &times;
+    h4 Add Meal
+    input(type='text' name='name' placeholder='Name')
+    input(type='number' name='price' placeholder='Price')
+    input(type='text' name='category' placeholder='Category')
+    input(type='text' name='description' placeholder='Description')
+    label(for='photos') Select image:
+    input(type='file' name='photos' accept='image/*')
+
+    button#addMealBtn Add
+
+  form#updateMealForm.popupModerators.form-a-u.pop
+    a.close() &times;
+    h4 Add Meal
+    img.mealPhoto#showPhotoUpdate(src='')
+    input#mealName(type='text' name='name' placeholder='Name')
+    input#mealPrice(type='number' name='price' placeholder='Price')
+    input#mealCategory(type='text' name='category' placeholder='Category')
+    input#mealDescription(type='text' name='description' placeholder='Description')
+    label(for='photos') Select image:
+    input#photos(type='file' name='photos' accept='image/*')
+
+    button#updateMealBtn Update
+
+  form#deleteMealForm.popupModerators.form-a-u.pop
+    a.close() &times;
+    h4 Delete Meal
+    p Are you sure you want 
+    |to delete this meal
+    span#mealToDelete meal
+    button#yesDeleteBtn Yes
+    button#noDeleteBtn No
+
+

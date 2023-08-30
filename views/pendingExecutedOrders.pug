@@ -1,0 +1,37 @@
+extends baseAdmin
+
+block details 
+  table.styled-table
+    thead
+      tr
+        th Phone Number
+        th Address
+        th The order
+        th Suggestions
+        th price
+        th Date &amp; Time
+        if !isExecuted
+          th Do execute
+    tbody
+      each order in orders
+        tr(id=`order${order._id}`)
+          td= order.phoneNumber
+          td= order.address
+          td
+            ul
+              each meal in order.meals
+                li #{meal.meal.name} &times; #{meal.quantity}
+          td= order.suggestions
+          td $ #{order.price}
+          - let dateOf = new Date(order.createdAt.getTime()).toISOString().replace(/T|Z/g, ' ').slice(0, -5);
+          td= dateOf
+          if !isExecuted
+            td
+              button#executeBtn(data-orderid=`${order._id}`) Execute
+  if length > 10
+    .pagination
+      a(href=`?page=1&limit=10`) &laquo;
+      - for (let i = 1; i <= range; i++) {
+          a.pageNumber(href=`?page=${i}&limit=10`) #{i}
+      - }
+      a(href=`?page=${range}&limit=10`) &raquo;

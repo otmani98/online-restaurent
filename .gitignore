@@ -1,0 +1,6 @@
+.cache/
+node_modules/
+.prettierrc
+config.env
+test.js
+

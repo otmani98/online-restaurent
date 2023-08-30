@@ -1,0 +1,29 @@
+extends baseAdmin
+
+block details 
+  table.styled-table
+    thead
+      tr
+        th Email
+        th Name
+        th Message
+        th Date &amp; Time
+        th Delete action
+    tbody
+      each contact in contacts
+        - let notSeen = (contact.seen) ? 'seen' : 'notSeen';
+        tr(id=`contact${contact._id}` class=`${notSeen}`)
+          td= contact.email
+          td= contact.name
+          td= contact.message
+          - let dateOf = new Date(contact.createdAt.getTime()).toISOString().replace(/T|Z/g, ' ').slice(0, -5);
+          td= dateOf
+          td
+            button#deleteContact(data-contactid=`${contact._id}`) Delete
+  if length > 10
+    .pagination
+      a(href=`?page=1&limit=10`) &laquo;
+      - for (let i = 1; i <= range; i++) {
+          a.pageNumber(href=`?page=${i}&limit=10`) #{i}
+      - }
+      a(href=`?page=${range}&limit=10`) &raquo;

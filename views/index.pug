@@ -1,0 +1,59 @@
+extends base
+
+block content
+  // landing section
+  #landing.landing
+    .container
+      .content
+        h2 Online Restaurant
+        p
+          | Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse
+          | cupiditate minus, maiores quas modi quis delectus fuga magnam
+          | eligendi voluptate odit veritatis labore. Reprehenderit illum
+          | voluptatem animi assumenda at fugiat.
+        a(href='menu') Go to Menu
+  // popular section
+  #popular.popular
+    .container
+      h3 Popular Meals
+      .meals
+        each meal in popularMeals
+          .meal(id=`meal${meal._id}`)
+            .img
+              img(src=`img/meals/${meal.photos[0]}` alt='')
+            .text
+              h4= meal.name
+              p= meal.description
+              button.btnPopA(data-id=`meal${meal._id}` data-price=`${meal.price}` ) 
+                |Add to cart ($ 
+                span.price= meal.price
+                |)
+  // about us section
+  #about.about
+    .container
+      h3 Who we are?
+      .text
+        p
+          | Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste natus
+          | perspiciatis, iusto quod architecto consequatur? Fuga quibusdam
+          | laudantium adipisci vero eum quia et magni inventore reiciendis
+          | molestias, debitis, placeat nobis!
+        p
+          | Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste natus
+          | perspiciatis, iusto quod architecto consequatur? Fuga quibusdam
+          | laudantium adipisci vero eum quia et magni inventore reiciendis
+          | molestias, debitis, placeat nobis!
+  // contact us section
+  #contact.contact
+    .container
+      h3 Contact Us
+      form.contactForm(action='')
+        input(id='emailContact' type='email' name='email' placeholder='Your E-mail')
+        input(id='nameContact' type='text' name='name' placeholder='Your Name')
+        textarea(name='' id='messageContact' cols='30' rows='10' placeholder='Your Need')
+        button.sendContact Send
+  .filter
+  //popupAdd
+  include _popupAdd
+  //ckeckout
+  include _checkout
