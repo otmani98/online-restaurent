@@ -19,7 +19,7 @@ const DB = process.env.ATLAS_DATABASE.replace(
 
 const LocalDB = process.env.LOCAL_DB;
 
-mongoose.connect(LocalDB, { useUnifiedTopology: true }).then(() => {
+mongoose.connect(DB, { useUnifiedTopology: true }).then(() => {
   console.log('DB connection successful');
 });
 
