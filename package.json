@@ -1,6 +1,9 @@
 {
   "name": "online_restaurant",
   "version": "1.0.0",
+  "engines": {
+    "node": "^18"
+  },
   "description": "Online Ordering System for Restaurants",
   "main": "server.js",
   "scripts": {
