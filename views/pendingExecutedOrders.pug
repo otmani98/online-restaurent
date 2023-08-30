@@ -6,6 +6,7 @@ block details
       tr
         th Phone Number
         th Address
+        th Email
         th The order
         th Suggestions
         th price
@@ -17,6 +18,7 @@ block details
         tr(id=`order${order._id}`)
           td= order.phoneNumber
           td= order.address
+          td= order.email
           td
             ul
               each meal in order.meals
