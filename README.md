@@ -57,7 +57,7 @@ Install This project with npm
 
 ## Video to explore the features
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/cRpuuGEN2tk/0.jpg)](https://www.youtube.com/watch?v=cRpuuGEN2tk)
 
 ## Features detail of this project
 
