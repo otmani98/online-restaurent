@@ -16,7 +16,7 @@ it empowers customers to easily browse and sort through a diverse menu, add mult
 
 ## Environment Variables
 
-To run this project, you will need to add the following environment variables to your .env file and ofcourse you have to create you own accounts that you need like stipre account and atlas mongodb and sendgrid to send emails
+To run this project, you will need to add the following environment variables to your config.env file and ofcourse you have to create you own accounts that you need like stipre account and atlas mongodb and sendgrid to send emails
 
 `NODE_ENV=production or devlopment`
 
@@ -44,7 +44,7 @@ To run this project, you will need to add the following environment variables to
 
 Install This project with npm
 
-- first make sure you create confing.env in the folder project after downloaded it with the right environment variables
+- first make sure you create config.env in the folder project after downloaded it with the right environment variables
 - open the command line
 
 ```bash
