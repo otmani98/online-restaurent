@@ -15,6 +15,8 @@ router
     mealController.createMeal,
   );
 
+router.get('/menuBsaedCategory', mealController.getMenuBasedOnCategory);
+
 router
   .route('/:id')
   .get(mealController.getMeal)

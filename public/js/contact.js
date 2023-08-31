@@ -36,11 +36,7 @@ export const makingMessagesSeen = async (seenContactsArr) => {
       requests.push(axios.patch(`/api/v1/contacts/${contactId}`));
     }
     //send all requests at the same time
-    const responses = await Promise.all(requests);
-
-    responses.forEach((res) => {
-      console.log(res);
-    });
+    await Promise.all(requests);
   } catch (err) {
     console.log(err);
   }

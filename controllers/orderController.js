@@ -84,11 +84,35 @@ exports.webhookCheckout = (req, res, next) => {
 };
 
 exports.getOrders = catchAsync(async (req, res, next) => {
-  const orders = await Ordering.find(req.query).sort('createdAt');
+  //to get orders executed or pending or all of them
+  let isExecuted;
+  if (req.query.executed === 'true') {
+    isExecuted = { executed: true };
+  } else if (req.query.executed === 'false') {
+    isExecuted = { executed: false };
+  }
+
+  //to make sure that we have the right length of all data
+  let lengthOfAll;
+
+  //we don't need this query if there no limit we're going to have lengthOfAll with the orders.length
+  if (req.query.limit) {
+    lengthOfAll = await Ordering.find(isExecuted).sort(req.query.sort).count();
+  }
+
+  //pagnation
+  const page = req.query.page * 1 || 1;
+  const limit = req.query.limit * 1 || lengthOfAll;
+  const skip = (page - 1) * limit;
+
+  const orders = await Ordering.find(isExecuted)
+    .sort(req.query.sort)
+    .skip(skip)
+    .limit(limit);
 
   res.status(200).json({
     status: 'success',
-    length: orders.length,
+    lengthOfAll: lengthOfAll ? lengthOfAll : orders.length,
     data: {
       orders,
     },
@@ -188,6 +212,54 @@ exports.getStatisticsMenu = catchAsync(async (req, res, next) => {
     status: 'success',
     length: agg.length,
     data: agg,
+  });
+});
+
+exports.getPopularMealsBasedOnOrders = catchAsync(async (req, res, next) => {
+  const popularMeals = await Ordering.aggregate([
+    {
+      $match: {
+        executed: true,
+      },
+    },
+    {
+      $unwind: '$meals',
+    },
+    {
+      $lookup: {
+        from: 'meals',
+        localField: 'meals.meal',
+        foreignField: '_id',
+        as: 'mealInfo',
+      },
+    },
+    {
+      $unwind: '$mealInfo',
+    },
+    {
+      $group: {
+        _id: '$mealInfo._id',
+        name: { $first: '$mealInfo.name' },
+        price: { $first: '$mealInfo.price' },
+        photos: { $first: '$mealInfo.photos' },
+        description: { $first: '$mealInfo.description' },
+        mealTotalQuantity: { $sum: '$mealInfo.quantity' },
+      },
+    },
+    {
+      $sort: { mealTotalQuantity: 1 },
+    },
+    {
+      $limit: 3,
+    },
+  ]);
+
+  res.status(200).json({
+    status: 'success',
+    length: popularMeals.length,
+    data: {
+      popularMeals,
+    },
   });
 });
 

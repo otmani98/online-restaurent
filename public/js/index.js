@@ -1,5 +1,5 @@
 /*eslint-disable*/
-// import '@babel/polyfill';
+import '@babel/polyfill';
 import { showPopupAdd } from './popupAdd.js';
 import { showHidePopupCart } from './showHidePopupCart.js';
 import { addToLocalCart } from './addToLocalCart.js';
@@ -102,8 +102,6 @@ if (contactForm) {
 if (resetForm) {
   resetForm.addEventListener('submit', (e) => {
     e.preventDefault();
-
-    console.log(document.getElementById('resetBtn').dataset.t);
     resetPassword(document.getElementById('resetBtn').dataset.t);
   });
 }

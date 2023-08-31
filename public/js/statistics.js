@@ -2,7 +2,6 @@ const charts = document.getElementById('myChart');
 let lastChart;
 const createChart = (labels, data, label) => {
   if (lastChart) {
-    console.log(lastChart);
     lastChart.destroy();
   }
   lastChart = new Chart(charts, {
@@ -30,7 +29,6 @@ const createChart = (labels, data, label) => {
 
 const createLineChart = (labels, data, label) => {
   if (lastChart) {
-    console.log(lastChart);
     lastChart.destroy();
   }
   lastChart = new Chart(charts, {
@@ -167,7 +165,11 @@ export const findMonthAndGetStat = async (month, year) => {
           break;
         }
       }
-      createChart(labels, data, `Profits for ${months[month-1]}-${year} in $`);
+      createChart(
+        labels,
+        data,
+        `Profits for ${months[month - 1]}-${year} in $`,
+      );
     }
   } catch (error) {
     console.log(error);

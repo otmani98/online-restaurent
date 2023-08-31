@@ -19,7 +19,6 @@ export const login = async (userName, password) => {
       }, 300);
     }
   } catch (err) {
-    // console.log(err);
     showAlert('error', err.response.data.message);
   }
 };

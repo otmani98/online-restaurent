@@ -57,8 +57,9 @@ exports.getMenu = catchAsync(async (req, res, next) => {
   //in req.query.fields
   //Paginate
   // in req.query.page + req.query.limit
+  const lengthOfAll = await Meal.count();
   const page = req.query.page * 1 || 1;
-  const limit = req.query.limit * 1 || 100;
+  const limit = req.query.limit * 1 || lengthOfAll;
   const skip = (page - 1) * limit;
 
   const menu = await Meal.find(JSON.parse(queryStr))
@@ -69,9 +70,29 @@ exports.getMenu = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     status: 'success',
+    lengthOfAll,
     length: menu.length,
     data: {
       menu,
+    },
+  });
+});
+
+exports.getMenuBasedOnCategory = catchAsync(async (req, res, next) => {
+  const mealsCategory = await Meal.aggregate([
+    {
+      $group: {
+        _id: '$category',
+        meals: { $push: '$$ROOT' },
+      },
+    },
+  ]);
+
+  res.status(200).json({
+    status: 'success',
+    length: mealsCategory.length,
+    data: {
+      mealsCategory,
     },
   });
 });

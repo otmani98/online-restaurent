@@ -3,8 +3,8 @@ const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
-// const xss = require('xss-clean');
 const cors = require('cors');
+const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
 const mealRouter = require('./routes/mealRouter');
@@ -17,7 +17,7 @@ const orderController = require('./controllers/orderController');
 const AppError = require('./utils/appError');
 const app = express();
 //For hosting that uses proxies
-// app.enable('trust proxy');
+app.enable('trust proxy');
 
 //Set templates
 app.set('view engine', 'pug');
@@ -33,23 +33,23 @@ app.options('*', cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Set security http headers
-
 app.use(
   helmet({
-    contentSecurityPolicy: false,
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: [
+          "'self'",
+          'cdnjs.cloudflare.com',
+          'https://js.stripe.com',
+          'https://cdn.jsdelivr.net/npm/chart.js',
+        ],
+        frameSrc: ['https://js.stripe.com'],
+        styleSrc: ["'self'", 'fonts.googleapis.com', 'cdnjs.cloudflare.com'],
+      },
+    },
   }),
 );
-
-// app.use(
-//   helmet({
-//     contentSecurityPolicy: {
-//       directives: {
-//         'script-src': ["'self'", 'cdnjs.cloudflare.com'],
-//         'style-src': ["'self'", 'fonts.googleapis.com'],
-//       },
-//     },
-//   }),
-// );
 
 //Development logging
 if (process.env.NODE_ENV === 'development') {
@@ -73,6 +73,12 @@ app.use(cookieParser());
 app.use(mongoSanitize());
 
 //prevent pramater pollution with hhp later...
+//PREVENT paramater pollution
+app.use(
+  hpp({
+    whitelist: ['category', 'price', 'executed'],
+  }),
+);
 
 //Compression data requests
 app.use(compression());

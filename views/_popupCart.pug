@@ -8,7 +8,6 @@
           .text
             h4= item.title
             span= `$${item.price} &times; ${item.quantity}`
-          - console.log(item.id)
           span.close.delete__item(data-id=`${item.id}`) &times;
       
     button.checkout

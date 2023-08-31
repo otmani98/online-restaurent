@@ -5,7 +5,6 @@ const Ordering = require('../models/orderingModel');
 const Contact = require('../models/contactModel');
 const User = require('../models/userModel');
 const crypto = require('crypto');
-const { json } = require('express');
 
 exports.getIndex = catchAsync(async (req, res, next) => {
   const popularMeals = await Ordering.aggregate([

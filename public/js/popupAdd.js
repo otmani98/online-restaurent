@@ -1,7 +1,5 @@
 export const showPopupAdd = (id) => {
   const meal = document.getElementById(id);
-  // console.log(meal.children);
-  // console.log(meal.children[1]);
   const img = document.querySelector(`#${id} img`);
   const h4 = document.querySelector(`#${id} h4`);
   const p = document.querySelector(`#${id} p`);
