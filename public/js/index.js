@@ -1,7 +1,7 @@
 /*eslint-disable*/
 import '@babel/polyfill';
 import { showPopupAdd } from './popupAdd.js';
-import { showHidePopupCart } from './showHidePopupCart.js';
+import { showHidePopupCart, HidePopupCart } from './showHidePopupCart.js';
 import { addToLocalCart } from './addToLocalCart.js';
 import { deleteMealFromLocal } from './deleteMealFromLocal.js';
 import { showCheckoutPopup } from './showCheckoutPopup.js';
@@ -30,6 +30,7 @@ import {
   findMonthAndGetStat,
 } from './statistics.js';
 import { showAlert } from './showAlert.js';
+import { showHideUlMenu, HideUlMenu } from './showHideUlMenu.js';
 
 //Get DOM elements
 const checkoutForm = document.querySelector('.checkout_form');
@@ -281,6 +282,10 @@ document.addEventListener('click', async (e) => {
     document.querySelector('.pop').style.display = 'none';
   }
 
+  if (!document.querySelector('.popupCart').contains(e.target)) {
+    HidePopupCart();
+  }
+
   //show and hide popup Cart
   if (
     e.target.className === 'cart' ||
@@ -289,8 +294,22 @@ document.addEventListener('click', async (e) => {
     showHidePopupCart();
   }
 
-  //add to local cart and hide it
+  if (!document.querySelector('header nav ul').contains(e.target)) {
+    HideUlMenu();
+  }
+
+  //show and hide ul links in phones etc..
+  if (e.target.classList.contains('toggle-menu')) {
+    showHideUlMenu();
+  }
+
+  if (e.target.classList.contains('aHead')) {
+    if (window.innerWidth < 993) {
+      HideUlMenu();
+    }
+  }
   if (e.target.className === 'addtobtn') {
+    //add to local cart and hide it
     addToLocalCart();
     document.querySelector('.filter').style.display = 'none';
     e.target.parentNode.parentNode.style.display = 'none';
