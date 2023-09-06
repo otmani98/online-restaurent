@@ -273,7 +273,6 @@ header li a:last-of-type {
   }
 }
 
-
 .popular .meals {
   margin-top: 60px;
   display: flex;
@@ -464,8 +463,8 @@ textarea {
     border-radius: 10px;
     width: 94%;
     height: 200px;
+  }
 }
-
 .notSeen {
   background-color: #f9d5a1 !important;
 }
@@ -901,6 +900,7 @@ footer .container .box2 .list ul li a:active {
 }
 
 /* popupCart */
+
 .popupCart {
   /* justify-content: center; */
   flex-direction: column;

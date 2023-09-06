@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import '@babel/polyfill';
+// import '@babel/polyfill';
 import { showPopupAdd } from './popupAdd.js';
 import { showHidePopupCart, HidePopupCart } from './showHidePopupCart.js';
 import { addToLocalCart } from './addToLocalCart.js';
