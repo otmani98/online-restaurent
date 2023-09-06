@@ -3,27 +3,30 @@ header
     a(href='/')
       img(src='/img/logo.png' alt='')
     nav
+      i.fas.fa-bars.toggle-menu
       ul
         li
-          a(href='/menu') Menu
+          a.aHead(href='/menu') Menu
         li
-          a(href='/#popular') Popular
+          a.aHead(href='/#popular') Popular
         li
-          a(href='/#about') About Us
+          a.aHead(href='/#about') About Us
         li
-          a(href='/#contact') Contact Us
+          a.aHead(href='/#contact') Contact Us
         if user
           li
-            a(href='/admin') Admin
+            a.aHead(href='/admin') Admin
           li
-            a.logout Logout
+            a.aHead.logout Logout
         else
           li
             a(href='/login') Admin area
-        li
-          a.cart
-            i.fas.fa-shopping-cart.shopping
-            span.counter 3
-  //- if !user
+        //- li
+        //-   a.cart
+        //-     i.fas.fa-shopping-cart.shopping
+        //-     span.counter 3
+      a.cart
+          i.fas.fa-shopping-cart.shopping
+          span.counter 3
   //.popupCart
   include _popupCart.pug
