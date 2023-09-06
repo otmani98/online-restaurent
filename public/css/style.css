@@ -464,8 +464,8 @@ textarea {
     border-radius: 10px;
     width: 94%;
     height: 200px;
+  }
 }
-
 .notSeen {
   background-color: #f9d5a1 !important;
 }
