@@ -1,5 +1,6 @@
+const popupCart = document.querySelector('.popupCart');
+
 export const showHidePopupCart = () => {
-  const popupCart = document.querySelector('.popupCart');
   if (!popupCart.style.display || popupCart.style.display === 'none') {
     //show cart element
     const cartElements = JSON.parse(window.localStorage.cart);
@@ -36,4 +37,9 @@ export const showHidePopupCart = () => {
   } else {
     document.querySelector('.popupCart').style.display = 'none';
   }
+};
+
+export const HidePopupCart = () => {
+  if (window.getComputedStyle(popupCart).display === 'flex')
+    popupCart.style.display = 'none';
 };

@@ -71,6 +71,7 @@ header {
 header .container {
   display: flex;
   justify-content: space-between;
+  position: relative;
 }
 header .container > a {
   width: 80px;
@@ -93,11 +94,47 @@ header .container a img {
 }
 header nav {
   display: flex;
+  align-items: center;
 }
 header ul {
   display: flex;
   align-items: center;
   gap: 15px;
+}
+header .cart {
+  font-size: 40px;
+  position: relative;
+}
+header .toggle-menu {
+  font-size: 40px;
+  display: none;
+}
+
+@media (max-width: 991px) {
+  header nav ul {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    background: linear-gradient(
+        90deg,
+        var(--main2-color) 0%,
+        var(--main4-color)
+      )
+      100%;
+    color: white;
+    border-radius: 15px;
+    width: 100%;
+    z-index: 5;
+    top: 87px;
+    right: 0;
+    padding-bottom: 25px;
+    padding-top: 20px;
+  }
+  header nav .toggle-menu {
+    display: block;
+    margin-right: 10px;
+    padding: 20px;
+  }
 }
 
 header li a {
@@ -125,13 +162,14 @@ header li a:last-of-type {
 
 .counter {
   text-align: center;
-  font-size: 10px;
+  font-size: 15px;
   background-color: rgb(247, 58, 58);
+  font-family: 'Ubuntu';
   border-radius: 50%;
   height: 20px;
   width: 20px;
   position: absolute;
-  bottom: 50%;
+  bottom: 66%;
   right: 25%;
   /* display: none; */
   display: none;
@@ -204,6 +242,19 @@ header li a:last-of-type {
   color: rgba(0, 0, 0, 0.699);
   box-shadow: 0 0 12px -1px #eee;
 }
+
+@media (max-width: 991px) {
+  .landing .content p {
+    font-size: 20px;
+    width: 100%;
+    line-height: 1.9;
+    margin-top: 50px;
+  }
+  .landing .content a {
+    width: 94%;
+  }
+}
+
 /* popular section */
 .popular {
   padding-top: var(--main-padding-50);
@@ -215,6 +266,13 @@ header li a:last-of-type {
   font-size: 55px;
   color: #c94d1c;
 }
+
+@media (max-width: 991px) {
+  .popular h3 {
+    font-size: 44px;
+  }
+}
+
 
 .popular .meals {
   margin-top: 60px;
@@ -319,6 +377,16 @@ header li a:last-of-type {
   font-family: 'Ubuntu';
 }
 
+@media (max-width: 991px) {
+  .about .text {
+    flex-direction: column;
+  }
+  .about .text p {
+    width: 95%;
+    font-size: 15px;
+  }
+}
+
 /* //contact us */
 
 .contact {
@@ -376,6 +444,26 @@ textarea {
   padding: 10px;
   border-radius: 10px;
   width: 60%;
+}
+
+@media (max-width: 991px) {
+  .contact h3 {
+    font-size: 44px;
+  }
+  .contact form button {
+    width: 94%;
+  }
+  .contact form input {
+    width: 94%;
+  }
+  .contact form textarea {
+    outline: none;
+    border: 2px solid #c94d1c;
+    font-size: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    width: 94%;
+    height: 200px;
 }
 
 .notSeen {
@@ -575,6 +663,7 @@ footer .container .box2 .list ul li a:active {
   overflow: hidden;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
   margin-top: 30px;
   gap: 25px;
