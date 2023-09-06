@@ -16,7 +16,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
       name: `${meal.name}`,
       description: meal.description,
       images: [
-        `https://online-restaurant.onrender.com/img/meals/${meal.photos[0]}`,
+        `${req.protocol}://${req.get('host')}/img/meals/${meal.photos[0]}`,
       ],
     });
 
