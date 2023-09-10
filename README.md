@@ -79,9 +79,6 @@ Install This project with npm
 
   Directly communicate with the restaurant for inquiries or special requests.
 
-- #### Real-time Order Tracking:
-  Monitor order status in real-time for transparency and convenience.
-
 ### Admin panel features
 
 - #### Profile Section:
