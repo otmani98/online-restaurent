@@ -12,7 +12,7 @@ it empowers customers to easily browse and sort through a diverse menu, add mult
 
 - follow this link bellow to see the project online
 
-  [Demo link](https://online-restaurant.onrender.com/)
+  [Demo link](https://online-restaurant-one.vercel.app/)
 
 ## Environment Variables
 
